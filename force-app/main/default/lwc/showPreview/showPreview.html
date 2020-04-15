@@ -1,0 +1,15 @@
+<template>
+    <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+        <div class="slds-size_1-of-1">
+          <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small slds-text-heading_large">Preview</div>
+        </div>
+        <div class="slds-size_11-of-12">
+            <div class="slds-box_x-small background" data-target="preview" lwc:dom="manual"></div>
+            <div class="slds-align_absolute-center" style="padding-top:5px;"> <lightning-slider label="Width" data-targetslider="width" onchange={repositionText} size="medium" value=50></lightning-slider> </div>
+          </div>
+          <div class="slds-size_1-of-12">
+            <div class="slds-align_absolute-center"><lightning-slider label="Height" type="vertical" data-targetslider="height" onchange={repositionText} value=50 style="padding-left:25px;"></lightning-slider></div>
+          </div>
+      </div>
+     
+</template>
