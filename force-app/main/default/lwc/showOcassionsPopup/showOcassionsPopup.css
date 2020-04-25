@@ -1,0 +1,7 @@
+.carddim{
+    width:100px;
+    height:100px;
+}
+.selected{
+    border: 2px blue solid;
+}

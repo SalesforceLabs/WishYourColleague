@@ -1,6 +1,12 @@
 .background{
-    background-size: contain;
-    background-repeat: no-repeat;
     height:300px;
-    background-position:center;
+    width:400px;
+}
+.absposition{
+    z-index: 1;
+    position: absolute;
+}
+
+.divcenter{
+    padding-left:25%;
 }

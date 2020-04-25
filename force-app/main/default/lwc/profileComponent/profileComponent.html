@@ -1,42 +1,51 @@
 <template>
     <div class="demo-only demo-only--sizing slds-grid slds-wrap" style="background:white;overflow:hidden;">
+
         <div class="slds-size_1-of-1">
-            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
-                <lightning-combobox
-                name="select_occasion"
-                label="Select occasion"
-                value={value}
-                placeholder="Select occasion"
-                options={options}
-                onchange={handleChange} ></lightning-combobox>
-            </div>
-      </div>
-            <div class="slds-size_1-of-1">
-                <div class="slds-box_x-small slds-text-align_center slds-m-around_x-small">
-                    <div class="background animate wobble"  lwc:dom="manual"></div>
+            <div class="slds-box_x-small slds-m-around_x-small divcenter">
+                <div class="background animate" onanimationiteration={handleIteration}> <!--removed the class wobble-->
+                    <div lwc:dom="manual" data-targetelement="text" class="absposition"></div>
+                    <img class="background" data-targetelement="img"></img>
                 </div>
-          </div>
-          <div class="slds-size_1-of-1">
-            <div class="slds-box_x-small slds-text-align_center slds-m-around_x-small">
-                <lightning-icon icon-name="utility:pause" onclick={handleAnimation} data-targetaction="pause"></lightning-icon>
-                <lightning-icon icon-name="utility:play" style="margin-left:5px;" onclick={handleAnimation} data-targetaction="resume"></lightning-icon>
             </div>
-      </div>
-
-      <template if:false={isLoggedInUser}>
-        <div class="slds-size_1-of-1 " style="background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%);" onclick={handlePopUpWYC}>
-            <div class="slds-align_absolute-center slds-border_right slds-border_top" style="height:3rem"><p class="ptext">Wish Your Colleague</p></div>
         </div>
-      </template>
-
-      <template if:true={isLoggedInUser}>
-        <div class="slds-size_1-of-1" style="background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%);">
-            <div class="slds-box slds-box_x-small  slds-align_absolute-center" style="height:3em"> <p class="ptext">Give Thanks</p> </div>
+        <div class="slds-size_1-of-1">
+            <div class="slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                <lightning-icon icon-name="utility:pause" onclick={handleAnimation} data-targetaction="pause">
+                </lightning-icon>
+                <lightning-icon icon-name="utility:play" class="margin-buttons" onclick={handleAnimation}
+                    data-targetaction="resume"></lightning-icon>
+                <lightning-button variant="brand" class="margin-buttons" onclick={handleShowOcassions}
+                    label="Select an ocassion"></lightning-button>
+            </div>
         </div>
-      </template>
+
+        <template if:false={isLoggedInUser}>
+            <div class="slds-size_1-of-1 "
+                style="background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%);"
+                onclick={handlePopUpWYC}>
+                <div class="slds-align_absolute-center slds-border_right slds-border_top" style="height:3rem">
+                    <p class="ptext">Wish Your Colleague</p>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={isLoggedInUser}>
+            <div class="slds-size_1-of-1"
+                style="background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%);">
+                <div class="slds-box slds-box_x-small  slds-align_absolute-center" style="height:3em">
+                    <p class="ptext">Give Thanks</p>
+                </div>
+            </div>
+        </template>
     </div>
 
     <template if:true={openPopUp}>
         <c-open-pop-up-on-profile user-id={recordId}></c-open-pop-up-on-profile>
+    </template>
+
+    <template if:true={popupShowOcassions}>
+        <c-show-ocassions-popup oncloseocassionpopup={handleCloseSelectOcassions}
+            onocassionselected={handleOcassionSelect}></c-show-ocassions-popup>
     </template>
 </template>
