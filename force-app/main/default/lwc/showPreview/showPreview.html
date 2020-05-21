@@ -1,18 +1,19 @@
 <template>
-    <div class="demo-only demo-only--sizing slds-grid slds-wrap">
-        <div class="slds-size_1-of-1">
-          <div class="slds-box slds-box_x-small slds-m-around_x-small slds-align_absolute-center slds-text-heading_large">Preview</div>
-        </div>
-        <div class="slds-size_11-of-12">
-            <div class="divcenter">
+  <div class="innerDiv slds-box previewBackground">
+    <div class="demo-only demo-only--sizing slds-grid slds-wrap ">
+          <div class="slds-size_11-of-12 outer centerDiv">
+            <div class="slds-box_x-small slds-m-around_x-small  slds-text-heading_medium previewText">Preview</div>
+          </div>
+        <div class="slds-size_11-of-12 outer centerDiv">
+            <div class="background floatRight positionRel">
                 <div lwc:dom="manual" data-targetelement = "text" class="absposition"></div>
-                <img class="background" data-targetelement = "img"></img>
+                <img class="background" data-targetelement = "img"  alt=""></img>
             </div>
-            <div style="padding-top:5px;" class="slds-align_absolute-center"> <lightning-slider label="Width" data-targetslider="width" onchange={repositionText} size="medium" value=0></lightning-slider> </div>
+            <div class="slds-align_absolute-center floatRight rightPad"> <lightning-slider variant="label-hidden"  data-targetslider="width" onchange={repositionText} size="medium" value=0></lightning-slider> </div>
           </div>
           <div class="slds-size_1-of-12">
-            <div class="slds-align_absolute-center"><lightning-slider label="Height" type="vertical" data-targetslider="height" onchange={repositionText} value=0 style="padding-left:25px;" ></lightning-slider></div>
+            <div class="slds-align_absolute-center"><lightning-slider variant="label-hidden" type="vertical" data-targetslider="height" size="medium" onchange={repositionText} value=0 ></lightning-slider></div>
           </div>
       </div>
-     
+     </div>
 </template>

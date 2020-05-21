@@ -1,4 +1,4 @@
-import { LightningElement,api,track } from 'lwc';
+import { LightningElement, api, track } from 'lwc';
 
 
 export default class SelectUsers extends LightningElement {
@@ -9,23 +9,24 @@ export default class SelectUsers extends LightningElement {
 
 
     @api
-    get selctedUserId(){
+    get selctedUserId() {
         return this.selectedUser;
     }
 
-    set selctedUserId(value){
-        if(value === this.user.User__c){
-            this.applyClass= "selected";
+    set selctedUserId(value) {
+        if (value === this.user.HTB__User__c) {
+            this.applyClass = "selected";
             this.dispatchEvent(
-                new CustomEvent('updateselecteduser', {detail : {
-                    selected: this.user
-                }})
+                new CustomEvent('updateselecteduser', {
+                    detail: {
+                        selected: this.user
+                    }
+                })
             )
-        }
-        else
+        } else
             this.applyClass = "";
-        
+
     }
 
-   
+
 }

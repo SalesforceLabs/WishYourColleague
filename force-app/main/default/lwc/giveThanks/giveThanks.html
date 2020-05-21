@@ -1,0 +1,124 @@
+<template>
+  
+    <div class="demo-only demo-only_viewport" style="height:640px">
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium" aria-labelledby="id-of-modalheader-h2" aria-modal="true" aria-describedby="modal-content-id-1">
+          <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <lightning-icon icon-name="utility:close" size="small" onclick={closeThanksPopup} class="slds-float_right"></lightning-icon>
+              <h2 id="id-of-modalheader-h2" class="slds-text-heading_medium">Give Thanks</h2>
+              <p class="slds-m-top_x-small">Here are users who wished you!!</p>
+            </header>
+            <template if:true={userSelection}>
+            <div class="slds-modal__content slds-grid slds-nowrap" id="modal-content-id-1">
+              <div class="slds-col slds-grid slds-grid_vertical slds-nowrap">
+                <div class="slds-p-vertical_x-small slds-p-horizontal_large slds-shrink-none slds-theme_shade">
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label slds-assistive-text" for="combobox-unique-id-21">Search</label>
+                    <div class="slds-form-element__control">
+                      <div class="slds-combobox_container">
+                        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                          <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                            <lightning-input value="" data-targetelement="search" onchange={search} placeholder="Search for users or messages" ></lightning-input>
+                            <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slds-pill_container slds-pill_container_bare">
+                    <ul class="slds-listbox slds-listbox_horizontal" role="listbox" aria-label="Selected Options:" aria-orientation="horizontal">
+                      <li class="slds-listbox-item" role="presentation">
+                        <span class="slds-pill" role="option" tabindex="0" aria-selected="true">
+                           
+                            <template for:each={selectedUsers} for:item="user">
+                                <span class="slds-pill__label" key={user.id}>{user.userName}</span>
+                                <span class="slds-icon_container slds-pill__remove" key={user.id} title="Remove">
+                                    <lightning-icon icon-name="utility:close" size="small" data-user={user.id} onclick={removeUser}></lightning-icon>
+                                </span>
+                               
+                            </template>
+</span>
+</li>
+</ul>
+</div>
+<div class="slds-text-title slds-m-top_x-small" aria-live="polite">{count} Item(s) Selected</div>
+</div>
+<div class="slds-scrollable slds-grow">
+<div class="slds-scrollable_none">
+<table aria-multiselectable="true" class="slds-table slds-no-row-hover slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols" role="grid">
+<thead>
+<tr class="slds-line-height_reset">
+<th class="" scope="col" style="width:3.75rem"></th>
+<th aria-label="Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+<a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+<div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+<span class="slds-truncate" title="Name">User</span>
+</div>
+</a>
+<div class="slds-resizable">
+<input type="range" aria-label="Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-69" max="1000" min="20" tabindex="-1" />
+</div>
+</th>
+<th aria-label="Product Code" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+<a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1">
+<div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+<span class="slds-truncate" title="Product Code">Message</span>
+</div>
+</a>
+<div class="slds-resizable">
+<input type="range" aria-label="Product Code column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-70" max="1000" min="20" tabindex="-1" />
+<span class="slds-resizable__handle">
+                                <span class="slds-resizable__divider"></span>
+</span>
+</div>
+</th>
+</tr>
+</thead>
+<tbody>
+
+<template for:each={wishes} for:item="wish">
+                        <tr aria-selected="true" class="slds-hint-parent slds-is-selected" key={wish.Id}>
+                          <td class="slds-text-align_right" role="gridcell" tabindex="0">
+                            <label class="slds-checkbox-button slds-checkbox-button_is-checked" for="example-unique-id-140">
+                              <input type="checkbox" class="slds-assistive-text" value="example-unique-id-140" tabindex="-1" checked="" />
+                              <span class="slds-icon_container slds-icon-utility-check slds-current-color" title="Description of icon when needed" >
+                               <lightning-icon icon-name="utility:add" size="xx-small" data-user={wish.Owner.Name} data-userid={wish.OwnerId} data-message={wish.Wish__c} onclick={changeIconType}></lightning-icon>
+                              </span>
+                            </label>
+                          </td>
+                          <th scope="row">
+                            <div class="slds-truncate">{wish.Owner.Name}</div>
+                          </th>
+                          <td role="gridcell">
+                            <div class="slds-truncate">{wish.Wish__c}</div>
+                          </td>
+                        </tr>
+                        </template>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</template>
+
+<template if:true={writeNoteToUsers}>
+    <c-write-a-note selected-users={selectedUsers} ocassion-id={selectedOcassionId} send={sendEmail} onpopupclose={closeThanksPopup}></c-write-a-note>
+</template>
+<footer class="slds-modal__footer">
+<button class="slds-button slds-button_neutral" onclick={closeThanksPopup}>Cancel</button>
+<template if:true={writeNoteToUsers}>
+  <button class="slds-button slds-button_brand" onclick={sendNote} >Finish</button>
+</template>
+<template if:true={userSelection}>
+  <button class="slds-button slds-button_brand" onclick={writeNote}>Next</button>
+</template>
+
+</footer>
+</div>
+</section>
+<div class="slds-backdrop slds-backdrop_open"></div>
+</div>
+
+</template>

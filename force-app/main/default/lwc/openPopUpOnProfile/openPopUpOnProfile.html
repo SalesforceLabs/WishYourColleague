@@ -1,5 +1,5 @@
 <template>
-  <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium"
+  <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_large"
     aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
     <div class="slds-modal__container">
       <header class="slds-modal__header">
@@ -9,12 +9,11 @@
           <h2 class="slds-modal__title slds-hyphenate">Wishing {selectedUser.name}</h2>
         </template>
 
-      </header>
-      <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-        
-        <c-wish-a-user profile=true user-id={userId}></c-wish-a-user>
-      </div>
-    </div>
-  </section>
-  <div class="slds-backdrop slds-backdrop_open"></div>
+</header>
+<div class="slds-modal__content" id="modal-content-id-1">
+    <c-wish-a-user profile=true user-id={userId} oncloseppopup={closepopup}></c-wish-a-user>
+</div>
+</div>
+</section>
+<div class="slds-backdrop slds-backdrop_open"></div>
 </template>

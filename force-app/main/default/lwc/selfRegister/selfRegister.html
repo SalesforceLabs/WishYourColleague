@@ -1,3 +1,70 @@
 <template>
+  <template if:false={showSpinner}>
     
+    <div class="slds-page-header">
+      <div class="slds-page-header__row">
+        <div class="slds-page-header__col-title">
+          <div class="slds-media">
+            <div class="slds-media__figure">
+              <span class="slds-icon_container slds-icon-standard-opportunity" title="Ocassions">
+               <lightning-icon icon-name="standard:shipment"></lightning-icon>
+              </span>
+            </div>
+            <div class="slds-media__body">
+              <div class="slds-page-header__name">
+                <div class="slds-page-header__name-title">
+                  <h1>
+                    <span class="slds-page-header__title slds-truncate">Your Occasion Details</span>
+                  </h1>
+                </div>
+              </div>
+              <p class="slds-page-header__name-meta">Kindly fill your details here</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="background:#f3f2f2;padding:1%"> 
+      <lightning-messages></lightning-messages>
+      <div class="slds-box">
+        <template if:true={showOcc}>
+        <template for:each={ocassions} for:item="i">
+        <div key={i.Id} class="demo-only demo-only--sizing slds-grid slds-wrap" style="padding-top:2%;">
+               <div class="slds-size_1-of-2" style="width:40%">
+                 <b>Your {i.Name}</b>
+              <lightning-input type="date" data-occtype={i.Id} onchange={updateDate}></lightning-input>
+               </div>
+               <div class="slds-size_1-of-2 paddingTop" >
+              <lightning-input type="checkbox" data-occhide={i.Id} label="Hide your wishes" onchange={hideWishes}></lightning-input>
+               </div>
+        </div>
+        </template>
+
+
+
+<div style="padding:2%;">
+<lightning-button variant="brand" value="Submit" label="Submit" onclick={createYourOcassions}></lightning-button>
+</div>
+</template>
+
+<template if:false={showOcc}>
+  <div style="padding-left:40%;">
+    You don't have any unregistered Occasions
+  </div>
+</template>
+
+</div>
+</div>
+</template>
+
+
+
+<template if:true={showSpinner}>
+<div class="exampleHolder">
+<lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+</div>
+</template>
+
+</template>
 </template>
