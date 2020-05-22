@@ -1,0 +1,9 @@
+.selected {
+    border-radius: 20px;
+    border: 2px solid #0070d2;
+    background-color: #e8f1fb;
+}
+
+div :hover {
+    background-color: #f3f2f2;
+}

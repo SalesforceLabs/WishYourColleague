@@ -1,0 +1,28 @@
+<template>
+    <div class="slds-form-element" style="background:white">
+        <div class="slds-modal__content slds-grid slds-nowrap" id="modal-content-id-1">
+              <div class="slds-col slds-grid slds-grid_vertical slds-nowrap">
+                <div class="slds-p-vertical_x-small slds-p-horizontal_large slds-shrink-none slds-theme_shade">
+  <label class="slds-form-element__label" for="textarea-id-01">Enter the note of thanks</label>
+  <div class="slds-form-element__control">
+    <textarea id="textarea-id-01" class="slds-textarea" data-element="emailbody"></textarea>
+  </div>
+  <div>
+
+    <template for:each={users} for:item="user">
+<span class="slds-pill slds-pill_link" key={user.id}>
+  <a href="javascript:void(0);" class="slds-pill__action">
+    <span class="slds-pill__label">{user.userName}</span>
+  </a>
+  <button class="slds-button slds-button_icon slds-button_icon slds-pill__remove" title="Remove">
+    <lightning-icon icon-name="utility:close" size="xx-small" onclick={removeUser} data-userid={user.id}></lightning-icon>
+    <span class="slds-assistive-text">Remove</span>
+  </button>
+</span>
+</template>
+</div>
+</div>
+</div>
+</div>
+</div>
+</template>

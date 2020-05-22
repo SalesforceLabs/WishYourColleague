@@ -1,6 +1,54 @@
-.background{
-    background-size: contain;
-    background-repeat: no-repeat;
-    height:300px;
-    background-position:center;
+.background {
+    height: 300px;
+    width: 400px;
+}
+
+.absposition {
+    z-index: 1;
+    position: absolute;
+}
+
+.divcenter {
+    padding-left: 25%;
+}
+
+.outer {
+    width: 80%;
+}
+
+.centerDiv {
+    margin: 0px auto;
+}
+
+.innerDiv {
+    width: 100%;
+    padding-left: 24%;
+    padding-right: 24%;
+}
+
+.floatRight {
+    float: right;
+}
+
+.rightPad {
+    padding-right: 10%;
+}
+
+.positionRel {
+    position: relative;
+}
+
+span.slds-slider-label__range {
+    display: none !important;
+}
+
+.previewText {
+    color: #0070d3;
+    margin-left: -26%;
+    font-weight: bold;
+}
+
+.previewBackground {
+    background-color: #f3f2f2b0;
+    border: 4px solid #00000024;
 }

@@ -1,105 +1,199 @@
 <template>
-             
-            <lightning-record-edit-form object-api-name="Message__c" density="auto" onsuccess={handleSuccess} onsubmit={handleSubmit}>
-                <div class="demo-only demo-only--sizing slds-grid slds-wrap" style="background:white;">
-                    <template if:false ={profile}>
-                        <div class="slds-size_1-of-1 " style="padding:15px;">
-                            <div class="slds-m-around_x-small slds-box slds-box_x-small">
+    <lightning-record-edit-form object-api-name="HTB__Message__c" record-id={selectedUser.wishId} density="auto" onsuccess={handleSuccess} onsubmit={handleSubmit} >
+        <lightning-messages>
+        </lightning-messages>
+
+        <template if:false={profile}>
+            <div class="slds-page-header headerHeight">
+                <div class="slds-page-header__row">
+                  <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                      <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                          <div class="slds-page-header__name-title">
+                            <h1>
                                 <template if:true={selectedUser.name}>
-                                    <div class="slds-align_absolute-center" style="height:5rem"> <p style="color:lightslategrey;font-size:25px;background:white">Wishing {selectedUser.name}</p></div>
+                                    <span class="slds-page-header__title slds-truncate positionCenter" title="Wish A User">Wishing {selectedUser.name}</span>
                                 </template>
-                                <template if:false={selectedUser.name}>
-                                    <div class="slds-align_absolute-center" style="height:5rem"> <p style="color:lightslategrey;font-size:25px;background:white">Wish your colleague</p></div>
+<template if:false={selectedUser.name}>
+                                    <span class="slds-page-header__title slds-truncate positionCenter" title="Wish Your Colleague">Wish your colleague</span>
                                 </template>
-                            </div>
-                        </div>
-                    </template>
-
-                <lightning-messages>
-                </lightning-messages>
-                
-                <div class="slds-size_1-of-2 " style="padding:15px;">
-                    <div class="slds-m-around_x-small slds-box_x-small" style="height:402.5px;">
-                        <template if:false={profile}>
-                            <div class="slds-text-title"> <p style="color:lightslategrey;font-size:25px;"> Select the User </p></div>
-                            <div class="demo-only demo-only--sizing slds-grid slds-wrap" style="padding-bottom:10px;">
-                                <template for:each={users} for:item="user">
-                                    <div class="slds-size_1-of-8" key={user.User__c} onclick={handleImgClick} data-targetid={user.User__c} data-username={user.User__r.Name}>
-                                        <div class="slds-box_x-small slds-text-align_center slds-m-around_x-small">
-                                            <span class="slds-avatar slds-avatar_circle slds-avatar_large">
-                                                    <img alt={user.User__r.Name} src={user.User__r.FullPhotoUrl} title="User avatar"/>
-                                            </span>
-                                            <div class="slds-align_absolute-center" style="font-size: 10px;">{user.User__r.Name}</div>
-                                         </div>
-                                    </div>
-                                </template>
-                            </div>
-                          </template>
-
-                          <div class="slds-m-around_x-small slds-box slds-box_x-small">
-                            <div class="slds-text-title"> <p style="color:lightslategrey;font-size:25px;"> Select the Ocassion </p></div>
-                            <div class="slds-text-title"> <p style="color:lightslategrey;font-size:16px;padding-top:30px;"> Upcoming {selectedUser.name}'s Ocassion </p></div>
-                            <div class="demo-only demo-only--sizing slds-grid slds-wrap">
-                                <template for:each={selectedUser.upcoming} for:item="upcoming">
-                                    <div class="slds-size_1-of-5" key={upcoming.Id} data-ocassionid={upcoming.Id} data-occname={upcoming.Occasion__r.Name} onclick={handleImgOccClick} >
-                                        <div class="slds-box_x-small slds-text-align_center slds-m-around_x-small">
-                                              <p style="font-size:10px;"> {upcoming.Occasion__r.Name} - Date:{upcoming.Ocassion_Date__c}</p>
-                                        </div>
-                                    </div>
-                                </template>
-                            </div>
-    
-                            <div class="slds-text-title"> <p style="color:lightslategrey;font-size:16px;padding-top:30px;"> Belated {selectedUser.name}'s Ocassion </p></div>
-                            <div class="demo-only demo-only--sizing slds-grid slds-wrap">
-                                <template for:each={selectedUser.prev} for:item="prev">
-                                    <div class="slds-size_1-of-5" key={prev.Id} data-ocassionid={prev.Id} data-occname={prev.Occasion__r.Name} onclick={handleImgOccClick} >
-                                        <div class="slds-box_x-small slds-text-align_center slds-m-around_x-small">
-                                              <p style="font-size:10px;"> {prev.Occasion__r.Name} - Date:{prev.Ocassion_Date__c}</p>
-                                        </div>
-                                    </div>
-                                </template>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slds-size_1-of-2 " style="padding:15px;">
-                    <div class="slds-m-around_x-small slds-box slds-box_x-small">
-                             <c-show-preview></c-show-preview>
-                    </div>
-                </div>
-               
-                
-                <div class="slds-size_1-of-1 " style="padding:15px;">
-                    <div class="slds-m-around_x-small slds-box slds-box_x-small">
-                        <div class="slds-text-title"> <p style="color:lightslategrey;font-size:25px;"> Send your warm wishes to your colleague</p></div>
-                        <lightning-input-field field-name="Wish__c" value="" onchange={handleWishChange}></lightning-input-field>
-                    </div>
-                </div>
-                
-                <div class="slds-size_1-of-1 " style="padding:15px;">
-                    <div class="slds-m-around_x-small slds-box slds-box_x-small">
-                        <div class="slds-text-title"> <p style="color:lightslategrey;font-size:25px;padding-bottom:15px;"> Select a Card to wish your colleague </p></div>
-                        <template if:true= {imagesURL}>
-                            <template for:each={imagesURL} for:item="image" for:index="i">
-                                <img key={image} src={image} class="template" data-imgid ={i}  onclick={handleImgClick}>
-                            </template>
+</h1>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</template>
+<div class="demo-only demo-only--sizing slds-grid slds-wrap" style="background:white;">
+<div class="slds-size_1-of-2 ">
+<div class="slds-m-around_x-small slds-box slds-box_x-small">
+<template if:false={profile}>
+                    <div class="slds-text-title" style="padding-left:2%;"> <p class="occHeading"> Select the User </p></div>
+                    <div class="demo-only demo-only--sizing slds-grid slds-wrap" style="padding-left:2%;">
+                        <template for:each={users} for:item="user">
+                            <c-select-users  user={user} key={user.HTB__User__c}  data-targetid={user.HTB__User__c} profile={profile} selcted-user-id={selectedUser.id} onupdateselecteduser={updateSelectedUser} onclick={handleUserClick}></c-select-users>
                         </template>
-                    </div>
+</div>
+</template>
+
+<div class="slds-m-around_x-small slds-box_x-small">
+<div class="slds-text-title">
+<p class="occHeading"> Select the Occasion</p>
+</div>
+
+<div class="slds-box" style="margin-bottom:1%;">
+<div class="header">
+<div class="slds-page-header__row">
+<div class="slds-page-header__col-title ">
+<div class="slds-media ">
+<div class="slds-media__body ">
+<div class="slds-page-header__name ">
+<div class="slds-page-header__name-title ">
+<h1>
+<p class="slds-page-header__name-meta " style="font-size:14px; ">Upcoming Occasions</p>
+</h1>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="demo-only demo-only--sizing slds-grid slds-wrap " style="padding:1%;">
+<template if:false={selectedUser.id}>
+                    <span class="slds-avatar slds-avatar_circle slds-avatar_large ">
+                        <img src={lockIcon}></img>
+                      </span>
+                </template>
+<template for:each={selectedUser.upcoming} for:item="upcoming">
+                                <c-select-ocassion key={upcoming.Id} occ={upcoming} data-targetid={upcoming.Id} onclick={handleOccClick} selcted-occ-id={selectedUser.selectedOcassion} data-selectedtype={upcoming.HTB__Occasion__r.Id} onupdateselectedocassion={handleUpdateOcc}></c-select-ocassion>
+                            </template>
+</div>
+</div>
+
+<div class="slds-box">
+<div class="header">
+<div class="slds-page-header__row ">
+<div class="slds-page-header__col-title ">
+<div class="slds-media ">
+<div class="slds-media__body ">
+<div class="slds-page-header__name ">
+<div class="slds-page-header__name-title ">
+<h1>
+<p class="slds-page-header__name-meta " style="font-size:14px; ">Belated Occasions</p>
+</h1>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="demo-only demo-only--sizing slds-grid slds-wrap " style="padding:1%;">
+<template if:false={selectedUser.id}>
+                    <span class="slds-avatar slds-avatar_circle slds-avatar_large ">
+                        <img src={lockIcon}></img>
+                      </span>
+                </template>
+<template for:each={selectedUser.prev} for:item="prev">
+                            <c-select-ocassion key={prev.Id} occ={prev}  data-targetid={prev.Id} onclick={handleOccClick} selcted-occ-id={selectedUser.selectedOcassion} data-selectedtype={prev.HTB__Occasion__r.Id} onupdateselectedocassion={handleUpdateOcc}></c-select-ocassion>
+                        </template>
+</div>
+
+</div>
+<p class="occHeading" style="padding-top:4%"> Select a Card to Wish Your Colleague </p>
+<template if:true={profile}>
+                <div class="slds-box slds-box_x-small" style="height:250px;">
+            
+                <template if:true={selectedUser.selectedOcassion}>
+                <div class="slds-text-title ">
+
+                     <p class="occSubHeading ">Please select a template to wish {selectedUser.name}</p> 
                 </div>
                 
-              <div class="slds-align_absolute-center" style="height:5rem">
-                <lightning-button
-                class="slds-m-top_small"
-                variant="brand"
-                type="submit"
-                name="Submit"
-                label="Submit">
-            </lightning-button>
-              </div>
-        </div>      
-       
-          </lightning-record-edit-form>
+                    <template for:each={imagesURL} for:item="image" for:index="i">
+                        <c-select-templates  key={image} image={image} selected-image={selectedUser.image}  data-image={image} onclick={handleTemplateChange} onupdatetemplate={handleUpdateTemplate}></c-select-templates>
+        
+                </template>
+</template>
 
 
-          
+<template if:false={selectedUser.selectedOcassion}>
+            <span class="slds-avatar slds-avatar_large emptyTemplate ">
+                <abbr class="slds-avatar__initials slds-icon-standard-account "> 
+                    <div class="slds-align_absolute-center "> Templates </div> 
+                </abbr>
+              </span>
+            </template>
+
+<div class="slds-align_absolute-center " style="padding-top:5px;height:1rem "> Upload Your Own Image </div>
+
+<c-upload-your-own-template rec-id={selectedUser.selectedOcassionType} onupdatetemplates={addFileToTemplates}></c-upload-your-own-template>
+</div>
+</template>
+
+<template if:false={profile}>
+                <div class="slds-box slds-box_x-small" >
+            
+                <template if:true={selectedUser.selectedOcassion}>
+                <div class="slds-text-title ">
+
+                     <p class="occSubHeading ">Please select a template to wish {selectedUser.name}</p> 
+                </div>
+                
+                    <template for:each={imagesURL} for:item="image" for:index="i">
+                        <c-select-templates  key={image} image={image} selected-image={selectedUser.image}  data-image={image} onclick={handleTemplateChange} onupdatetemplate={handleUpdateTemplate}></c-select-templates>
+        
+                </template>
+</template>
+
+
+<template if:false={selectedUser.selectedOcassion}>
+            <span class="slds-avatar slds-avatar_large emptyTemplate ">
+                <abbr class="slds-avatar__initials slds-icon-standard-account "> 
+                    <div class="slds-align_absolute-center "> Templates </div> 
+                </abbr>
+              </span>
+            </template>
+
+<div style="padding-top:3%;font-size:12px;padding-bottom:3%;height:1rem;"> Or Add Your Own Card </div>
+
+<c-upload-your-own-template rec-id={selectedUser.selectedOcassionType} onupdatetemplates={addFileToTemplates}></c-upload-your-own-template>
+</div>
+</template>
+
+
+</div>
+</div>
+</div>
+
+<div class="slds-size_1-of-2 ">
+<div class="slds-m-around_x-small ">
+<c-show-preview image={selectedUser.image} wish={selectedUser.wish} set-position={position}></c-show-preview>
+</div>
+<template if:true={profile}>
+<p class="occHeading " style="padding-left:2%;"> Write a Personalised your colleague</p>
+</template>
+<template if:false={profile}>
+    <p class="occHeading " style="padding-top:2.5%;padding-left:2%;"> Write a Personalised your colleague</p>
+    </template>
+<div class="slds-m-around_x-small slds-box_x-small ">
+<div class="slds-text-title ">
+</div>
+<lightning-input-field field-name="HTB__Wish__c" data-targettype="RTA" value="" onchange={handleWishChange}></lightning-input-field>
+
+<div class="slds-align_absolute-center" style="padding-right:3%;float:right;padding-bottom:3%;">
+<lightning-button class="slds-m-top_small" variant="brand" type="submit" name="Submit" label="Submit">
+</lightning-button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</lightning-record-edit-form>
 </template>

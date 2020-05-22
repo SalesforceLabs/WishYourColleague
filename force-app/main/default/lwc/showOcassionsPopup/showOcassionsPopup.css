@@ -1,0 +1,20 @@
+.carddim {
+    width: 200px;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.centerpopup {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.ocassionPopup {
+    height: 80%;
+    top: 10%;
+    bottom: 10%;
+}
+
+.padingRadio {
+    padding-left: 60%;
+}

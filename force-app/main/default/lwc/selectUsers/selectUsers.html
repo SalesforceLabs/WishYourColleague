@@ -1,0 +1,10 @@
+<template>
+                <div class={applyClass}  data-targetid={user.User__c} data-username={user.HTB__User__r.Name}>
+                    <div class="slds-box_x-small slds-text-align_center slds-m-around_x-small">
+                        <span class="slds-avatar slds-avatar_circle slds-avatar_large">
+                                <img alt={user.HTB__User__r.Name} src={user.HTB__User__r.FullPhotoUrl} title="User avatar"/>
+                        </span>
+                        <div class="slds-align_absolute-center" style="font-size: 10px;">{user.HTB__User__r.Name}</div>
+                     </div>
+                </div>
+</template>

@@ -1,0 +1,9 @@
+.selected {
+    border: 2px solid #0070d2;
+}
+
+.template {
+    height: 100px;
+    width: 100px;
+    margin-left: 10px;
+}

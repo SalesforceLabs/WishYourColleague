@@ -1,11 +1,47 @@
-
-
-.selected{
-    border:3px solid blue;
+.headerHeight {
+    height: 73px;
 }
 
-.template{
-    height:100px;
-    width:100px;
-    margin-left:10px;
+.positionCenter {
+    margin-top: 5%;
+}
+
+.padChildComp {
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+.pStyle {
+    color: lightslategrey;
+    font-size: 16px;
+}
+
+.occHeading {
+    color: black;
+    font-size: 16px;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+
+.occSubHeading {
+    color: #3E3E3B;
+    font-size: 12px;
+    padding-bottom: 5px;
+}
+
+.emptyTemplate {
+    height: 100px;
+    width: 100px;
+}
+
+.header {
+    width: 104%;
+    padding: 2%;
+    margin-top: -2%;
+    margin-left: -2%;
+    background: #F3F2F2;
+}
+
+.slds-form-element__label {
+    display: none !important;
 }
